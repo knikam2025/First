@@ -1,10 +1,11 @@
 import React from 'react'
+import ProductChart from './../Redux/ProductChart';
 
 const Expence = () => {
   return (
     <>
     
-<p>Exprences</p>
+<ProductChart/>
     </>
   )
 }

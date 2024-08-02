@@ -13,11 +13,11 @@ const DemoChart = () => {
   useEffect(() => {
     axios.get('https://668a20dc2c68eaf3211c01c0.mockapi.io/order/Cashcollection')
       .then(response => {
-        const data = response.data;
+        const data = response.data[0]; // Accessing the first object in the array
 
         // Extracting days and amounts from the fetched data
-        const days = Object.keys(data[0]); // ["sunday", "monday", "tuesday", ...]
-        const amounts = Object.values(data[0]); // [30000, 45620, 35000, ...]
+        const days = Object.keys(data); // ["sunday", "monday", "tuesday", ...]
+        const amounts = Object.values(data); // [30000, 45620, 35000, ...]
 
         setChartData({
           options: {
@@ -35,9 +35,12 @@ const DemoChart = () => {
         <div className="mixed-chart">
           <Chart
             options={chartData.options}
-            series={chartData.series}
+            series={[{
+              name: "Amount",
+              data: chartData.series
+            }]}
             type='donut'
-            width="500"
+            width="100%"
           />
         </div>
       </div>
